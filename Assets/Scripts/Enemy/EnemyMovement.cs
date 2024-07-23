@@ -5,21 +5,26 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField]
-    private Transform player;
+    
+    private Transform targetTransform;
     private NavMeshAgent navMeshAgent;
     private Vector3 targetPostiion;
 
-    private void OnEnable()
+
+    public void Init(Transform targetTransform)
     {
+        this.targetTransform = targetTransform;
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
+
     private void Update()
     {
-        targetPostiion = player.position;
-
-        navMeshAgent.SetDestination(targetPostiion);
+        if (targetTransform != null)
+        {
+            targetPostiion = targetTransform.position;
+            navMeshAgent.SetDestination(targetPostiion);
+        }
     }
 
 

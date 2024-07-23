@@ -13,6 +13,14 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     private float spawnProbability;
 
+    //private Transform targetTransform;
+
+
+    public void Init(Transform targetTrasform)
+    {
+        GetComponent<EnemyMovement>().Init(targetTrasform);
+    }
+
 
     public int GetHelth()
     {
