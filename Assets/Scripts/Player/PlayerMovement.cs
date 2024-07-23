@@ -51,6 +51,16 @@ public class PlayerMovement : MonoBehaviour
 
 
         mTransform.rotation = Quaternion.Lerp(mTransform.rotation, mRotation, 0.1f);
+
+
+        /*
+        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+
+        if (pos.x < 0.0) Debug.Log("I am left of the camera's view.");
+        if (1.0 < pos.x) Debug.Log("I am right of the camera's view.");
+        if (pos.y < 0.0) Debug.Log("I am below the camera's view.");
+        if (1.0 < pos.y) Debug.Log("I am above the camera's view.");
+        */
     }
 
 }
