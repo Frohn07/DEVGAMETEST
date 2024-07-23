@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private List<Enemy> enemyPrefabs;
 
-    // Update is called once per frame
-    void Update()
+
+
+    private void SortEnemyList()
     {
-        
+
     }
 }

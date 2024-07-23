@@ -10,6 +10,12 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 cameraPosition;
 
+
+    [SerializeField]
+    private float XBorder;
+    [SerializeField]
+    private float ZBorder;
+
     [SerializeField]
     private Transform ground;
 
@@ -38,6 +44,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Update()
     {
+        /*
         Vector3 pos = mCamera.WorldToViewportPoint(ground.position);
 
         Debug.Log("pos: " + pos);
@@ -94,9 +101,9 @@ public class CameraFollow : MonoBehaviour
 
             hasFixedAxis = false;
         }
-        
+        */
 
-        mTransform.position = new Vector3((activeAxis.x == 0? mTransform.position.x: followTarget.position.x), mTransform.position.y, (activeAxis.y == 0 ? mTransform.position.z : followTarget.position.z));
+        mTransform.position = new Vector3(Mathf.Clamp(followTarget.position.x, -XBorder, XBorder), mTransform.position.y, Mathf.Clamp(followTarget.position.z, -ZBorder, ZBorder));
 
         /*
         cameraPosition = new Vector3(followTarget.position.x * activeAxis.x, mTransform.position.y, followTarget.position.z * activeAxis.y);
