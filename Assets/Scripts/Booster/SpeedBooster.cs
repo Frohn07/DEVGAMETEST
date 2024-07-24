@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedBooster : MonoBehaviour
+public class SpeedBooster : Booster
 {
-    // Start is called before the first frame update
-    void Start()
+    private PlayerMovement playerMovement;
+
+    private float speedIncrement = 1.5f;
+
+    private void OnEnable()
     {
-        
+        playerMovement = GetComponent<PlayerMovement>();
+        playerMovement.ChangeIncrementSpeedValue(speedIncrement);
+
+        Invoke(nameof(DestroyMe), lifetime);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void DestroyMe()
     {
-        
+        playerMovement.ChangeIncrementSpeedValue(-speedIncrement);
+        Destroy(this);
     }
+
 }

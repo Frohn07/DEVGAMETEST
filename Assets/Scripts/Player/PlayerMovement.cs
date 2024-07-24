@@ -6,18 +6,28 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private float speed;
+    private float incrementSpeed = 0;
+    private float multiplierSpeed = 1;
 
     private Transform mTransform;
     private Quaternion mRotation;
+    //private Rigidbody mRigidbody;
 
     private void Start()
     {
         mTransform = GetComponent<Transform>();
         mRotation = mTransform.rotation;
+
+        //mRigidbody = GetComponent<Rigidbody>();
     }
 
 
     private void Update()
+    {
+        CheckInputs();
+    }
+
+    private void CheckInputs()
     {
         Vector3 direction = Vector3.zero;
 
@@ -38,8 +48,7 @@ public class PlayerMovement : MonoBehaviour
             direction -= Vector3.forward;
         }
 
-        mTransform.position += direction * speed * Time.deltaTime;
-
+        mTransform.position += direction * ((speed + incrementSpeed) * multiplierSpeed) * Time.deltaTime;
 
         if (Input.GetMouseButton(0))
         {
@@ -51,16 +60,14 @@ public class PlayerMovement : MonoBehaviour
 
 
         mTransform.rotation = Quaternion.Lerp(mTransform.rotation, mRotation, 0.1f);
-
-
-        /*
-        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-
-        if (pos.x < 0.0) Debug.Log("I am left of the camera's view.");
-        if (1.0 < pos.x) Debug.Log("I am right of the camera's view.");
-        if (pos.y < 0.0) Debug.Log("I am below the camera's view.");
-        if (1.0 < pos.y) Debug.Log("I am above the camera's view.");
-        */
     }
 
+    public void ChangeIncrementSpeedValue(float inputValue)
+    {
+        incrementSpeed += inputValue;
+    }
+    public void ChangeMuiltiplierSpeedValue(float inputValue)
+    {
+        multiplierSpeed = inputValue;
+    }
 }

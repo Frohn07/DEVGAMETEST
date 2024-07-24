@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InvulnerabillityBooster : MonoBehaviour
+public class InvulnerabillityBooster : Booster
 {
-    // Start is called before the first frame update
-    void Start()
+    private PlayerHealth playerHealth;
+   
+
+    private void OnEnable()
     {
-        
+        playerHealth = GetComponent<PlayerHealth>();
+        playerHealth.ChangeInvulnerableState(true);
+
+        Invoke(nameof(DestroyMe), lifetime);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void DestroyMe()
     {
-        
+        playerHealth.ChangeInvulnerableState(false);
+        Destroy(this);
     }
 }

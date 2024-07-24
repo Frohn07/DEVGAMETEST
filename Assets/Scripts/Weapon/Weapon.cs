@@ -5,6 +5,8 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     [SerializeField]
+    private int id;
+    [SerializeField]
     protected float damage;
     [SerializeField]
     protected float shootSpeed;
@@ -18,6 +20,10 @@ public abstract class Weapon : MonoBehaviour
 
     public abstract void Shoot();
 
+    public int GetIndex()
+    {
+        return id;
+    }
     public float GetDamage()
     {
         return damage;

@@ -11,10 +11,11 @@ public class EnemyMovement : MonoBehaviour
     private Vector3 targetPostiion;
 
 
-    public void Init(Transform targetTransform)
+    public void Init(float speed, Transform targetTransform)
     {
         this.targetTransform = targetTransform;
         navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.speed = speed;
     }
 
 

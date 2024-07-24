@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Projectile : MonoBehaviour
 {
     [SerializeField]
-    private float damage;
+    protected float damage;
     [SerializeField]
     protected float flightRange;
 
@@ -13,16 +13,30 @@ public abstract class Projectile : MonoBehaviour
 
     protected float speed = 5;
 
+    protected bool canDamage;
+
 
     public void Init(float damage ,float flightRange, Vector3 weaponNuzzlePosition)
     {
+        canDamage = true;
         this.damage = damage;
         this.flightRange = flightRange;
         startPosition = weaponNuzzlePosition;
     }
 
     public abstract void StartMove();
-   
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.TryGetComponent(out EnemyHealth enemyHealth) && canDamage)
+        {
+            enemyHealth.TakeDamage(damage);
+            Destroy(gameObject);
+        }
+    }
+
+
     /*
     public virtual void CheckFlightRange()
     {

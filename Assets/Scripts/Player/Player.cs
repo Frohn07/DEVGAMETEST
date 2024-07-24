@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private PlayerHealth playerHealth;
+    private PlayerMovement playerMovement;
+    private PlayerAttack playerAttack;
+    private PlayerTrigger playerTrigger;
+
+
+    public void Init()
     {
-        
+        playerAttack = GetComponent<PlayerAttack>();
+        playerMovement = GetComponent<PlayerMovement>();
+        playerHealth = GetComponent<PlayerHealth>();
+        playerTrigger = GetComponent<PlayerTrigger>();
+
+        playerTrigger.Init(this);
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public PlayerAttack GetPlayerAttackComponent()
     {
-        
+        return playerAttack;
+    }
+    public PlayerMovement GetPlayerMovementComponent()
+    {
+        return playerMovement;
+    }
+    public PlayerHealth GetPlayerHealthComponent()
+    {
+        return playerHealth;
     }
 }
+

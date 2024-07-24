@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     [SerializeField]
-    private int healt;
+    private float health;
     [SerializeField]
     private float moveSpeed;
     [SerializeField]
@@ -18,13 +18,14 @@ public abstract class Enemy : MonoBehaviour
 
     public void Init(Transform targetTrasform)
     {
-        GetComponent<EnemyMovement>().Init(targetTrasform);
+        GetComponent<EnemyMovement>().Init(moveSpeed, targetTrasform);
+        GetComponent<EnemyHealth>().Init(health);
     }
 
 
-    public int GetHelth()
+    public float GetHelth()
     {
-        return healt;
+        return health;
     }
     public float GetMoveSpeed()
     {
