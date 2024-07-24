@@ -2960,8 +2960,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponBonusSpawnPoint: {fileID: 1038329676}
   strengtheningPickupBonusSpawnPoint: {fileID: 77145757}
-  weaponSpawnTime: 6
-  strengtheningSpawnTime: 5
+  weaponSpawnTime: 10
+  strengtheningSpawnTime: 27
 --- !u!1 &1898681493
 GameObject:
   m_ObjectHideFlags: 0
